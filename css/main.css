@@ -1,26 +1,5 @@
 /*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
 
-html,
-button {
-    border-width: 5px !important;
-    background-color: none !important;
-}
-
-#level button {
-    background-color: #4e5d6c;
-}
-
-.levelClicked {
-    border-color: #ec971f !important;
-    background-color: #c9302c !important;
-}
-
-.buttonClicked {
-    border-color: #eee !important;
-    font-weight: bold !important;
-    text-shadow: -1px -1px 0 #485563, 1px -1px 0 #485563, -1px 1px 0 #485563, 1px 1px 0 #485563 !important;
-}
-
 input,
 select,
 textarea
@@ -78,8 +57,34 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+button {
+    border-width: 5px !important;
+    background-color: none !important;
+}
 
+.levelClicked {
+    border-color: #ec971f !important;
+    background-color: #c9302c !important;
+}
 
+.buttonClicked {
+    border-color: #eee !important;
+    font-weight: bold !important;
+    text-shadow: -1px -1px 0 #485563, 1px -1px 0 #485563, -1px 1px 0 #485563, 1px 1px 0 #485563 !important;
+}
+
+#textareaReport {
+    max-width: 70em;
+    height: 17em;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+h1 {
+    text-align: center
+}
 
 
 
@@ -234,13 +239,4 @@ textarea {
     h3 {
         page-break-after: avoid;
     }
-}
-
-#textareaReport {
-    max-width: 70em;
-    height: 17em;
-    margin-top: 10px;
-    margin-bottom: 40px;
-    background-color: #ffffff;
-    color: #000000;
 }
