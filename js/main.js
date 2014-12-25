@@ -19,7 +19,6 @@ var buttons = {
 			l6: {},
 			l7: {}
 		},
-		// report: 'No fracture or dislocation in the cervical spine.',
 		report: {
 			l2: '',
 			l3: '',
@@ -50,7 +49,7 @@ var buttons = {
 $(document).ready(function() {
 
 	cspine.update = function() {
-		var i = 0, j, cdl = cspine.data[cspine.levels[i]], crl = cspine.report[cspine.levels[i]];
+		var i = 0, j, cdl = cspine.data[cspine.levels[i]];
 		cspine.report = {l2: '',l3: '',l4: '',l5: '',l6: '',l7: ''};
 		cspine.reportHTML = '';
 		cspine.getData();
@@ -77,6 +76,7 @@ $(document).ready(function() {
 		$('#textareaReport').html(cspine.reportHTML);
 	};
 
+	// turn the report data into words
 	cspine.fixReport = function() {
 		var i;
 		for (i = 0; i < cspine.levels.length; i++) {
@@ -100,7 +100,7 @@ $(document).ready(function() {
 			cspine.reportHTML = 'No cervical spine injury.';
 		}
 
-		console.log(cspine.report);
+		// console.log(cspine.report);
 	};
 
 	// find out which level button is clicked
@@ -127,14 +127,37 @@ $(document).ready(function() {
 		return false;
 	};
 
+	// are there findings at the queried level?
+	cspine.LevelPos = function(level) {
+		var cdl = cspine.data[level];
+		if (cdl.m || cdl.d || cdl.n) {
+			return true;
+		} else {
+			return false;
+		}
+	};
 
+	// clear all buttons in the desired line
+	cspine.clearLine = function(line) {
+		var i;
+		for (i = 0; i < buttons[line].length; i++) {
+			$('#' + buttons[line][i]).removeClass('buttonClicked');
+		}
+	};
 
+	// restore clicked buttons
+	cspine.loadLevel = function(level) {
+		var i, cdl = cspine.data[level];
+		for (i = 0; i < cspine.types.length; i++) {
+			// clear the entire line first ...
+			cspine.clearLine(cspine.types[i]);
 
-	// Initialization
-	$('#l2').addClass('levelClicked');
-	cspine.update();
-
-
+			// ... then select the applicable button
+			if (cdl[cspine.types[i]]) {
+				$('#' + cdl[cspine.types[i]]).addClass('buttonClicked');
+			}
+		}
+	};
 
 	$('a').click(function() {
 		var i, len;
@@ -142,6 +165,7 @@ $(document).ready(function() {
 		// add highlight to selected button
 		if (this.id[0] === 'l') {
 			$(this).addClass('levelClicked');
+			cspine.loadLevel(this.id);
 		} else {
 			$(this).addClass('buttonClicked');
 		}
@@ -157,8 +181,23 @@ $(document).ready(function() {
 			}
 		}
 
+		// update level buttons according to filled status
+		for (i = 0, len = cspine.levels.length; i < len; i++) {
+			if (cspine.LevelPos(cspine.levels[i])) {
+				if (cspine.levels[i] !== cspine.getLevel()) {
+					$('#' + cspine.levels[i]).addClass('levelPos');
+				} else {
+					$('#' + cspine.levels[i]).removeClass('levelPos');
+					// $('#' + cspine.levels[i]).addClass('levelClicked');
+				}
+			}
+		}
+
 		cspine.update();
 	});
 
+	// Initialization
+	$('#l2').addClass('levelClicked');
+	cspine.update();
 
 });
