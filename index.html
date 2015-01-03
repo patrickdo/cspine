@@ -27,128 +27,86 @@
 
 <BODY>
 
-<div class="h1 container">Cervical Spine Trauma Report Generator</div>
+<div class="h1 container">
+	Cervical Spine Trauma Report Generator
+</div>
 <hr>
 
-<!-- LEVEL -->
-<div class="container" id="divLevel">
+
+<DIV class="container">
+
+	<!-- LEVEL -->
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<!-- <h2 class="panel-title">Level</h2> -->
 			<legend>Level</legend>
-			<div class="btn-group" data-toggle="buttons">
-				<label class="btn btn-default" id="c2">
-					<input type="radio" name="btngrpLevel">C2-3
-				</label>
-				<label class="btn btn-default" id="c3">
-					<input type="radio" name="btngrpLevel">C3-4
-				</label>
-				<label class="btn btn-default" id="c4">
-					<input type="radio" name="btngrpLevel">C4-5
-				</label>
-				<label class="btn btn-default" id="c5">
-					<input type="radio" name="btngrpLevel">C5-6
-				</label>
-				<label class="btn btn-default" id="c6">
-					<input type="radio" name="btngrpLevel">C6-7
-				</label>
-				<label class="btn btn-default" id="c7">
-					<input type="radio" name="btngrpLevel">C7-T1
-				</label>
+			<div class="btn-group" id="divLevel">
+				<button type="radio" class="btn btn-default" id="c2">C2-3</button>
+				<button type="radio" class="btn btn-default" id="c3">C3-4</button>
+				<button type="radio" class="btn btn-default" id="c4">C4-5</button>
+				<button type="radio" class="btn btn-default" id="c5">C5-6</button>
+				<button type="radio" class="btn btn-default" id="c6">C6-7</button>
+				<button type="radio" class="btn btn-default" id="c7">C7-T1</button>
 			</div>
 		</div>
 	</div>
-</div>
 
-<!-- MORPHOLOGY -->
-<div class="container" id="divMorph">
+	<!-- MORPHOLOGY -->
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h2 class="panel-title">Morphology</h2>
 		</div>
 		<div class="panel-body">
-			<div class="btn-group" data-toggle="buttons">
-				<label class="btn btn-primary" id="m0">
-					<input type="radio" name="btngrpMorph">No abnormality
-				</label>
-				<label class="btn btn-primary" id="m1">
-					<input type="radio" name="btngrpMorph">Compression
-				</label>
-				<label class="btn btn-primary" id="m2">
-					<input type="radio" name="btngrpMorph">Burst fracture
-				</label>
-				<label class="btn btn-primary" id="m3">
-					<input type="radio" name="btngrpMorph">Distraction
-				</label>
-				<label class="btn btn-primary" id="m4">
-					<input type="radio" name="btngrpMorph">Translation/Rotation
-				</label>
+			<div class="btn-group" id="divMorph">
+				<button type="radio" class="btn btn-primary" id="m0">No abnormality</button>
+				<button type="radio" class="btn btn-primary" id="m1">Compression</button>
+				<button type="radio" class="btn btn-primary" id="m2">Burst fracture</button>
+				<button type="radio" class="btn btn-primary" id="m3">Distraction</button>
+				<button type="radio" class="btn btn-primary" id="m4">Translation/Rotation</button>
 			</div>
 		</div>
 	</div>
-</div>
 
-<!-- DISCO-LIGAMENTOUS COMPLEX -->
-<div class="container" id="divDLC">
+	<!-- DISCO-LIGAMENTOUS COMPLEX -->
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h2 class="panel-title">Disco-ligamentous complex (DLC)</h2>
 		</div>
 		<div class="panel-body">
-			<div class="btn-group" data-toggle="buttons">
-				<label class="btn btn-success" id="d0">
-					<input type="radio" name="btngrpDLC">Intact
-				</label>
-				<label class="btn btn-success" id="d1">
-					<input type="radio" name="btngrpDLC">Indeterminate
-				</label>
-				<label class="btn btn-success" id="d2">
-					<input type="radio" name="btngrpDLC">Disrupted
-				</label>
+			<div class="btn-group" id="divDLC">
+				<button type="radio" class="btn btn-success" id="d0">Intact</button>
+				<button type="radio" class="btn btn-success" id="d1">Indeterminate</button>
+				<button type="radio" class="btn btn-success" id="d2">Disrupted</button>
 			</div>
 		</div>
 	</div>
-</div>
 
-<!-- NEUROLOGIC STATUS -->
-<div class="container" id="divNeuro">
+	<!-- NEUROLOGIC STATUS -->
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h2 class="panel-title">Neurologic status</h2>
 		</div>
 		<div class="panel-body">
-			<div class="btn-group" data-toggle="buttons">
-				<label class="btn btn-info" id="n0">
-					<input type="radio" name="btngrpNeuro">Intact
-				</label>
-				<label class="btn btn-info" id="n1">
-					<input type="radio" name="btngrpNeuro">Root injury
-				</label>
-				<label class="btn btn-info" id="n2">
-					<input type="radio" name="btngrpNeuro">Complete cord injury
-				</label>
-				<label class="btn btn-info" id="n3">
-					<input type="radio" name="btngrpNeuro">Incomplete cord injury
-				</label>
-				<label class="btn btn-info" id="n4">
-					<input type="radio" name="btngrpNeuro">Continuous cord compression
-				</label>
+			<div class="btn-group" id="divNeuro">
+				<button type="radio" class="btn btn-info" id="n0">Intact</button>
+				<button type="radio" class="btn btn-info" id="n1">Root injury</button>
+				<button type="radio" class="btn btn-info" id="n2">Complete cord injury</button>
+				<button type="radio" class="btn btn-info" id="n3">Incomplete cord injury</button>
+				<button type="radio" class="btn btn-info" id="n4">Continuous cord compression</button>
 			</div>
 		</div>
 	</div>
-</div>
 
-<!-- REPORT -->
-<div class="container" id="divReport">
+	<!-- REPORT -->
 	<div class="editable" id="textareaReport" contenteditable="true">
-		An error has occurred.
+		No cervical spine injury.
 	</div>
-</div>
+</DIV>
 
 <hr>
 <FOOTER>
 	<div class="container">
-		<p>&copy; Patrick Do 2014</p>
+		<p>&copy; 2014 <a href="mailto:patrickdo@gmail.com">Patrick Do</a></p>
 	</div>
 </FOOTER>
 
