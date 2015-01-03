@@ -1,88 +1,121 @@
 <!DOCTYPE html>
-<html class="no-js">
-<head>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<HEAD>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" href="css/normalize.min.css">
-	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/main.css">
 
-	<!--[if lt IE 9]>
-			<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-			<script>window.html5 || document.write('<script src="js/vendor/html5shiv.js"><\/script>')</script>
-	<![endif]-->
-	<title>Cervical Spine Injury Report Generator</title>
+	<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+	<title>Cervical Spine Trauma Report Generator</title>
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	
+
 	  ga('create', 'UA-58001147-1', 'auto');
 	  ga('require', 'displayfeatures');
 	  ga('send', 'pageview');
-	
 	</script>
-</head>
+</HEAD>
 
-<body>
+<BODY>
 
-	<h1>Cervical Spine Injury Report Generator</h1>
+<div class="h1 container">
+	Cervical Spine Trauma Report Generator
+</div>
+<hr>
 
-	<div class="container" id="level">
-		<div class="panel panel-footer">
+
+<DIV class="container">
+
+	<!-- LEVEL -->
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<!-- <h2 class="panel-title">Level</h2> -->
 			<legend>Level</legend>
-			<a class="btn btn-default" id="l2">C2-3</a>
-			<a class="btn btn-default" id="l3">C3-4</a>
-			<a class="btn btn-default" id="l4">C4-5</a>
-			<a class="btn btn-default" id="l5">C5-6</a>
-			<a class="btn btn-default" id="l6">C6-7</a>
-			<a class="btn btn-default" id="l7">C7-T1</a>
+			<div class="btn-group" id="divLevel">
+				<button type="radio" class="btn btn-default" id="c2">C2-3</button>
+				<button type="radio" class="btn btn-default" id="c3">C3-4</button>
+				<button type="radio" class="btn btn-default" id="c4">C4-5</button>
+				<button type="radio" class="btn btn-default" id="c5">C5-6</button>
+				<button type="radio" class="btn btn-default" id="c6">C6-7</button>
+				<button type="radio" class="btn btn-default" id="c7">C7-T1</button>
+			</div>
 		</div>
 	</div>
 
+	<!-- MORPHOLOGY -->
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h2 class="panel-title">Morphology</h2>
+		</div>
+		<div class="panel-body">
+			<div class="btn-group" id="divMorph">
+				<button type="radio" class="btn btn-primary" id="m0">No abnormality</button>
+				<button type="radio" class="btn btn-primary" id="m1">Compression</button>
+				<button type="radio" class="btn btn-primary" id="m2">Burst fracture</button>
+				<button type="radio" class="btn btn-primary" id="m3">Distraction</button>
+				<button type="radio" class="btn btn-primary" id="m4">Translation/Rotation</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- DISCO-LIGAMENTOUS COMPLEX -->
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h2 class="panel-title">Disco-ligamentous complex (DLC)</h2>
+		</div>
+		<div class="panel-body">
+			<div class="btn-group" id="divDLC">
+				<button type="radio" class="btn btn-success" id="d0">Intact</button>
+				<button type="radio" class="btn btn-success" id="d1">Indeterminate</button>
+				<button type="radio" class="btn btn-success" id="d2">Disrupted</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- NEUROLOGIC STATUS -->
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h2 class="panel-title">Neurologic status</h2>
+		</div>
+		<div class="panel-body">
+			<div class="btn-group" id="divNeuro">
+				<button type="radio" class="btn btn-info" id="n0">Intact</button>
+				<button type="radio" class="btn btn-info" id="n1">Root injury</button>
+				<button type="radio" class="btn btn-info" id="n2">Complete cord injury</button>
+				<button type="radio" class="btn btn-info" id="n3">Incomplete cord injury</button>
+				<button type="radio" class="btn btn-info" id="n4">Continuous cord compression</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- REPORT -->
+	<div class="editable" id="textareaReport" contenteditable="true">
+		No cervical spine injury.
+	</div>
+</DIV>
+
+<hr>
+<FOOTER>
 	<div class="container">
-		<div class="panel panel-footer">
-			<legend>Morphology</legend>
-			<a class="btn btn-default" id="m0">No abnormality</a>
-			<a class="btn btn-success" id="m1">Compression</a>
-			<a class="btn btn-info" id="m2">Burst fracture</a>
-			<a class="btn btn-warning" id="m3">Distraction</a>
-			<a class="btn btn-danger" id="m4">Translation/Rotation</a>
-		</div>
+		<p>&copy; 2014 <a href="mailto:patrickdo@gmail.com">Patrick Do</a></p>
 	</div>
+</FOOTER>
 
-	<div class="container">
-		<div class="panel panel-footer">
-			<legend>Disco-ligamentous complex (DLC)</legend>
-			<a class="btn btn-default" id="d0">Intact</a>
-			<a class="btn btn-info" id="d1">Indeterminate</a>
-			<a class="btn btn-danger" id="d2">Disrupted</a>
-		</div>
-	</div>
 
-	<div class="container">
-		<div class="panel panel-footer">
-			<legend>Neurologic status</legend>
-			<a class="btn btn-default" id="n0">Intact</a>
-			<a class="btn btn-success" id="n1">Root injury</a>
-			<a class="btn btn-info" id="n2">Complete cord injury</a>
-			<a class="btn btn-warning" id="n3">Incomplete cord injury</a>
-			<a class="btn btn-danger" id="n4">Continuous cord compression</a>
-		</div>
-	</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
+<script src="js/vendor/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
 
-	<div class="container">
-		<div class="editable" id="textareaReport" contenteditable="true">
-			An error has occurred.
-		</div>
-	</div>
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
-	<script src="js/main.js"></script>
-</body>
+</BODY>
 </html>
