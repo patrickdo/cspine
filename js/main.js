@@ -29,7 +29,8 @@ var buttons = {
 		n2: 'Complete cord injury. ',
 		n3: 'Incomplete cord injury. ',
 		n4: 'Continuous cord compression. '
-	};
+	},
+	hints = {};
 
 
 $(document).ready(function() {
@@ -163,8 +164,106 @@ $('button').click(function() {
 	cspine.update();
 });
 
+// show popovers on hover
+$('button[type="radio"]').hover(function() {
+	if ($('#cbHints').is(':checked')) {
+		$(this).popover('show');
+	} else {
+		return;
+	}
+}, function() {
+	$(this).popover('hide');
+});
+
+// initialize hints popovers
+cspine.initHints = function() {
+	var i;
+	hints = {
+		m0: {
+			title: '<b>No morphologic abnormality</b> [0 pts]',
+			content: 'No spinal column disruption'
+		},
+		m1: {
+			title: '<b>Compression fracture</b> [1 pt]',
+			content:
+				'Visible loss of height through part of or an entire vertebral body, or endplate disruption<br>' +
+				'<i>e.g. flexion "tear-drop" fracture</i>'
+		},
+		m2: {
+			title: '<b>Burst fracture</b> [2 pts]',
+			content: 'A type of compression fracture which results in disruption of the posterior vertebral body cortex with retropulsion into the spinal canal'
+		},
+		m3: {
+			title: '<b>Distraction injury</b> [3 pts]',
+			content:
+				'Anatomic dissociation in the vertical axis<br>' +
+				'<u>Flexion</u>: disruption of the strong capsular and bony constraint of facet articulation<br>' +
+				'<u>Extension</u>: disruption of the strong tensile properties of the anterior longitudinal ligament (ALL), intervertebral disc, vertebral body'
+		},
+		m4: {
+			title: '<b>Translation/rotation injury</b> [4 pts]',
+			content:
+				'Horizontal displacement of one part of the subaxial cervical spine with respect to the other<br>' +
+				'<li>Relative angulation > 11&deg;<br>' +
+				'<i>e.g. unilateral/bilateral facet fracture-dislocations, fracture separation of the lateral mass, bilateral pedicle fractures</i>'
+		},
+		d0: {
+			title: '<b>Intact disco-ligamentous complex (DLC)</b> [0 pts]',
+			content: 'No disruption of the disco-ligamentous complex (DLC)'
+		},
+		d1: {
+			title: '<b>Indeterminate disco-ligamentous complex (DLC)</b> [1 pt]',
+			content: 'Indeterminate competence of the disco-ligamentous complex (DLC)'
+		},
+		d2: {
+			title: '<b>Disrupted disco-ligamentous complex (DLC)</b> [2 pts]',
+			content:
+				'Abnormal bony relationships' +
+				'<ul><li>widened interspace space' +
+				'<li>dislocation or separation of facet joints' +
+				'<li>subluxation of vertebral bodies' +
+				'<li>widened disc space</ul>'
+		},
+		n0: {
+			title: '<b>Intact neurologic status</b> [0 pts]',
+			content: 'No clinical neurologic injury'
+		},
+		n1: {
+			title: '<b>Root injury</b> [1 pt]',
+			content: 'Nerve root compression'
+		},
+		n2: {
+			title: '<b>Complete spinal cord injury</b> [2 pts]',
+			content: '<i>e.g. ASIA A</i>'
+		},
+		n3: {
+			title: '<b>Incomplete spinal cord injury</b> [3 pts]',
+			content: 'Incomplete spinal cord injury (SCI) generally requires more urgent treatment than complete SCI'
+		},
+		n4: {
+			title: '<b>Continuous cord compression</b> [+1 pt]',
+			content: 'Ongoing cord compression in the setting of neurologic deficit'
+		}
+	};
+	buttons.p = buttons.m.concat(buttons.d, buttons.n);
+
+	$('button[type="radio"]').popover({
+		container: 'body',
+		placement: 'top',
+		html: true,
+		trigger: 'manual'
+	});
+
+	for (i = 0; i < buttons.p.length; i++) {
+		var po = $('#'+buttons.p[i]).data('bs.popover');
+		po.options.title = hints[buttons.p[i]].title;
+		po.options.content = hints[buttons.p[i]].content;
+	}
+};
+
 // initialization - preselect C2-3
 $('#c2').addClass('curLevel active');
+cspine.initHints();
 cspine.update();
 
 

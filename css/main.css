@@ -20,3 +20,8 @@
 	font-weight: 900;
 	text-decoration: underline;
 }
+
+.popover {
+	font-weight: 300;
+	max-width: 50%;
+}
