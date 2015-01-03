@@ -35,11 +35,13 @@ var buttons = {
 
 $(document).ready(function() {
 
-// main report generation
+// main report generation, occurs on every button click
 cspine.update = function() {
 	var i = 0, j;
+	// regenerate report
 	cspine.report = {c2: '',c3: '',c4: '',c5: '',c6: '',c7: ''};
 
+	// save data for current level
 	cspine.getData();
 
 	// quit if no level is selected
@@ -66,7 +68,6 @@ cspine.update = function() {
 	}
 
 	cspine.fixReport();
-
 	$('#textareaReport').html(cspine.reportHTML);
 };
 
@@ -89,7 +90,7 @@ cspine.fixReport = function() {
 	for (i = 0; i < cspine.levels.length; i++) {
 		// add spinal levels
 		cspine.report[cspine.levels[i]] = cspine.report[cspine.levels[i]]
-			.replace(/(.*? )~~~/, '$1C' + (i+2) + '. ')
+			.replace(/(.*? )~~~/, '$1the C' + (i+2) + ' vertebral body. ')
 			.replace(/(.*? )!!!/, '$1C' + (i+2) + '-C' + (i+3))
 			.replace(/C8/, 'T1');
 	}
@@ -143,22 +144,37 @@ cspine.LevelPos = function(level) {
 
 // manually replicating bootstrap functionality to avoid race condition
 $('button').click(function() {
-	$(this).addClass('active').siblings().removeClass('active');
-	$(this).blur();
-
-	if (this.id[0] === 'c') {
-		cspine.loadLevel(this.id);
-		$(this).addClass('curLevel').siblings().removeClass('curLevel');
+	// 'unclick' a button / toggle 'checked' status
+	if (this.id[0] !== 'c' && $(this).hasClass('active')) {
+		// remove CSS
+		$(this).removeClass('active').blur();
+		// remove from stored data
+		cspine.data[$('#divLevel button.active').attr('id')][this.id[0]] = '';
+		cspine.update();
+		return;
 	}
 
-	for (var i = 0; i < cspine.levels.length; i++) {
-		if (cspine.LevelPos(cspine.levels[i])) {
-			if (cspine.levels[i] !== $('#divLevel button.active').attr('id')) {
-				$('#' + cspine.levels[i]).addClass('levelPos');
+	// update CSS
+	$(this).addClass('active').blur()
+		.siblings().removeClass('active');
+
+	// if level button is clicked
+	if (this.id[0] === 'c') {
+		// load saved data for the level
+		cspine.loadLevel(this.id);
+
+		// update CSS
+		$(this).addClass('curLevel')
+			.siblings().removeClass('curLevel');
+
+		// custom CSS if data is stored at other levels
+		$(this).siblings().each(function() {
+			if (cspine.LevelPos(this.id)) {
+				$(this).addClass('levelPos');
 			} else {
-				$('#' + cspine.levels[i]).removeClass('levelPos');
+				$(this).removeClass('levelPos');
 			}
-		}
+		});
 	}
 
 	cspine.update();
