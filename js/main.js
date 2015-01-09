@@ -3,12 +3,11 @@
 /* enable strict mode */
 "use strict";
 
-
 var buttons = {
 		l: ['c2','c3','c4','c5','c6','c7'],
 		m: ['m0','m1','m2','m3', 'm4'],
 		d: ['d0','d1','d2'],
-		n: ['n0','n1','n2','n3','n4']
+		n: ['n0','n1','n2','n3','n1c']
 	},
 	cspine = {
 		levels: buttons.l,
@@ -28,7 +27,7 @@ var buttons = {
 		n1: 'Root injury. ',
 		n2: 'Complete cord injury. ',
 		n3: 'Incomplete cord injury. ',
-		n4: 'Continuous cord compression. '
+		n1c: 'Continuous cord compression. '
 	},
 	hints = {};
 
@@ -41,29 +40,39 @@ cspine.update = function() {
 	// regenerate report
 	cspine.report = {c2: '',c3: '',c4: '',c5: '',c6: '',c7: ''};
 
-	// save data for current level
-	cspine.getData();
-
 	// quit if no level is selected
 	if (!$('#divLevel button.active').attr('id')) return false;
+
+	// show CCC if a neuro status is chosen
+	if ($('#divNeuro button').hasClass('active')) {
+		$('#divCCC').fadeIn('slow');
+	} else {
+		$('#divCCC').fadeOut('slow');
+		$('#n1c').removeClass('active');
+	}
+
+	// save data for current level
+	cspine.getData();
 
 	// for each level
 	for (i = 0; i < cspine.levels.length; i++) {
 		var	morph = cspine.data[cspine.levels[i]].m,
 			DLC = cspine.data[cspine.levels[i]].d,
-			neuro = cspine.data[cspine.levels[i]].n;
+			neuro = cspine.data[cspine.levels[i]].n,
+			ccc = cspine.data[cspine.levels[i]].c;
 
 		// add a sentence for each selection
 		cspine.report[cspine.levels[i]] =
 			(text[cspine.data[cspine.levels[i]].m] || '') +
 			(text[cspine.data[cspine.levels[i]].d] || '') +
-			(text[cspine.data[cspine.levels[i]].n] || '');
+			(text[cspine.data[cspine.levels[i]].n] || '') +
+			(text[cspine.data[cspine.levels[i]].c] || '');
 
 		// add SLIC score if all 3 pathologies are inputted
 		if (morph && DLC && neuro) {
 			cspine.report[cspine.levels[i]] +=
 				'The SLIC score is ' +
-				(~~morph[1] + ~~DLC[1] + ~~neuro[1]) + '.';
+				(~~morph[1] + ~~DLC[1] + ~~neuro[1] + ~~ccc[1]) + '.';
 		}
 	}
 
@@ -80,6 +89,7 @@ cspine.getData = function() {
 	cspine.data[level].m = $('#divMorph button.active').attr('id') || '';
 	cspine.data[level].d = $('#divDLC button.active').attr('id') || '';
 	cspine.data[level].n = $('#divNeuro button.active').attr('id') || '';
+	cspine.data[level].c = $('#divCCC button.active').attr('id') || '';
 };
 
 // turn the report data into words
@@ -92,7 +102,8 @@ cspine.fixReport = function() {
 		cspine.report[cspine.levels[i]] = cspine.report[cspine.levels[i]]
 			.replace(/(.*? )~~~/, '$1the C' + (i+2) + ' vertebral body. ')
 			.replace(/(.*? )!!!/, '$1C' + (i+2) + '-C' + (i+3))
-			.replace(/C8/, 'T1');
+			.replace(/C8/, 'T1')
+			.replace(/\. Continuous/,' with continuous');
 	}
 
 	// join each level's text into a single HTML snippet
@@ -108,8 +119,6 @@ cspine.fixReport = function() {
 	if (cspine.reportHTML === '<br>' || cspine.reportHTML === '') {
 		cspine.reportHTML = 'No cervical spine injury.';
 	}
-
-	// console.log(cspine.report);
 };
 
 // clear all buttons in the desired line
@@ -256,7 +265,7 @@ cspine.initHints = function() {
 			title: '<b>Incomplete spinal cord injury</b> [3 pts]',
 			content: 'Incomplete spinal cord injury (SCI) generally requires more urgent treatment than complete SCI'
 		},
-		n4: {
+		n1c: {
 			title: '<b>Continuous cord compression</b> [+1 pt]',
 			content: 'Ongoing cord compression in the setting of neurologic deficit'
 		}

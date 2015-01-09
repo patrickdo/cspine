@@ -1,13 +1,3 @@
-#textareaReport {
-	max-width: 70em;
-	height: 17em;
-	margin-top: 10px;
-	padding: 5px;
-	background-color: #ebebeb;
-	color: #000000;
-	overflow-y: auto;
-}
-
 .levelPos {
 	border-color: #ec971f !important;
 	background-color: #865c5b !important;
@@ -19,6 +9,21 @@
 	background-color: #c9302c !important;
 	font-weight: 900;
 	text-decoration: underline;
+}
+
+#divCCC {
+	display: none;
+	margin-top: 5px;
+}
+
+#textareaReport {
+	max-width: 70em;
+	height: 17em;
+	margin-top: 10px;
+	padding: 5px;
+	background-color: #ebebeb;
+	color: #000000;
+	overflow-y: auto;
 }
 
 .popover {
