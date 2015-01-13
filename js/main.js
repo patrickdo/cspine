@@ -178,11 +178,7 @@ $('button').click(function() {
 
 		// custom CSS if data is stored at other levels
 		$(this).siblings().each(function() {
-			if (cspine.LevelPos(this.id)) {
-				$(this).addClass('levelPos');
-			} else {
-				$(this).removeClass('levelPos');
-			}
+			$(this).toggleClass('levelPos', cspine.LevelPos(this.id));
 		});
 	}
 
