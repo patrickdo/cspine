@@ -196,6 +196,20 @@ $('button[type="radio"]').hover(function() {
 	$(this).popover('hide');
 });
 
+$('#btnSelectAll').click(function() {
+	document.getElementById('textareaReport').focus();
+	document.execCommand('SelectAll');
+});
+
+cspine.reset = function() {
+	cspine.data = {c2:{},c3:{},c4:{},c5:{},c6:{},c7:{}};
+	$('button').removeClass('active levelPos curLevel').blur();
+	$('#c2').addClass('curLevel active');
+	cspine.update();
+};
+
+$('#btnReset').click(cspine.reset);
+
 // initialize hints popovers
 cspine.initHints = function() {
 	var i;
@@ -283,9 +297,8 @@ cspine.initHints = function() {
 };
 
 // initialization - preselect C2-3
-$('#c2').addClass('curLevel active');
+cspine.reset();
 cspine.initHints();
-cspine.update();
 
 
 });
