@@ -233,7 +233,8 @@ cspine.initHints = function() {
 			content:
 				'Anatomic dissociation in the vertical axis<br>' +
 				'<u>Flexion</u>: disruption of the strong capsular and bony constraint of facet articulation<br>' +
-				'<u>Extension</u>: disruption of the strong tensile properties of the anterior longitudinal ligament (ALL), intervertebral disc, vertebral body'
+				'<u>Extension</u>: disruption of the strong tensile properties of the anterior longitudinal ligament (ALL), intervertebral disc, vertebral body<br><br>' +
+				'<i>e.g. perched facet, hyperextension injury</i>'
 		},
 		m4: {
 			title: '<b>Translation/rotation injury</b> [4 pts]',
@@ -248,13 +249,15 @@ cspine.initHints = function() {
 		},
 		d1: {
 			title: '<b>Indeterminate disco-ligamentous complex (DLC)</b> [1 pt]',
-			content: 'Indeterminate competence of the disco-ligamentous complex (DLC)'
+			content:
+				'Indeterminate competence of the disco-ligamentous complex (DLC)<br>' +
+				'<i>e.g. isolated interspinous widening, MRI signal change only</i>'
 		},
 		d2: {
 			title: '<b>Disrupted disco-ligamentous complex (DLC)</b> [2 pts]',
 			content:
 				'Abnormal bony relationships' +
-				'<ul><li>widened interspace space' +
+				'<ul><li>disc space widening' +
 				'<li>dislocation or separation of facet joints' +
 				'<li>subluxation of vertebral bodies' +
 				'<li>widened disc space</ul>'
