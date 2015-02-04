@@ -24,6 +24,7 @@
 	background-color: #ebebeb;
 	color: #000000;
 	overflow-y: auto;
+	font-weight: 400;
 }
 
 .popover {
